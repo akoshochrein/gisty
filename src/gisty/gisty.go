@@ -32,7 +32,6 @@ func main() {
     fileNames := GetFileNamesFromParams()
     for i := range fileNames {
         data := ReadFileData(fileNames[i])
-
         truncFileName := path.Base(fileNames[i])
         files[truncFileName] = FileData{
             FileName: truncFileName,

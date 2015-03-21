@@ -14,6 +14,8 @@ import (
     "strings"
 )
 
+import "github.com/howeyc/gopass"
+
 type FileData struct {
     FileName string `json:"filename"`
     FileContent string `json:"content"`
@@ -47,8 +49,6 @@ func main() {
         log.Fatal(err)
     }
 
-    fmt.Println(string(filesEncoded))
-
     gitUserName, gitPassword := GetGitAuthData()
     url := fmt.Sprintf("https://%s:%s@api.github.com/gists", gitUserName, gitPassword)
     resp, err := http.Post(url, "application/json", bytes.NewBuffer(filesEncoded))
@@ -81,17 +81,13 @@ func GetGitParam(paramName string) (string) {
 }
 
 func GetGitPasswordForUser(userName string) (password string) {
-    // TODO turn echo off when asking for password
     fmt.Printf("Password for %s: ", userName)
-    _, err := fmt.Scanf("%s", &password)
-    if err != nil {
-        log.Fatal(err)
-    }
+    password = string(gopass.GetPasswdMasked())
     return
 }
 
 func GetGistName() (gistName string) {
-    fmt.Printf("Gist name:")
+    fmt.Printf("Gist username:")
     _, err := fmt.Scanf("%s", &gistName)
     if err != nil {
         log.Fatal(err)

@@ -58,7 +58,14 @@ func main() {
 
     defer resp.Body.Close()
 
-    fmt.Printf(resp.Status)
+    var dat map[string]interface{}
+
+    content, _ := ioutil.ReadAll(resp.Body)
+    if err := json.Unmarshal(content, &dat); err != nil {
+        panic(err)
+    }
+    allDone := fmt.Sprintf("All done! Find your uploaded files @ https://gist.github.com/%s/", gitUserName)
+    fmt.Println(allDone)
 }
 
 func GetGitAuthData() (string, string) {

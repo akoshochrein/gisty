@@ -19,4 +19,5 @@ Gisty gets your github information from your global git config. The experience i
 
 ```Shell
 ~ gisty filename.txt
+All done! Find your uploaded files @ https://gist.github.com/akoskaaa/
 ```

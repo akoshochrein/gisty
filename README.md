@@ -15,7 +15,7 @@ cd gisty
 ```
 
 ## Usage
-Gisty gets your github information from your global git config. The experience is the best when you have your suername and password there as well. If any of those are missing, gisty will prompt you for the required information.
+Gisty gets your github information from your global git config. The experience is the best when you have your username and password there as well. If any of those are missing, gisty will prompt you for the required information.
 
 ```Shell
 gisty filename.txt

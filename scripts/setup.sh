@@ -6,7 +6,6 @@ command -v go >/dev/null 2>&1 || {
     exit 1;
 }
 
-OLD_GOPATH=$GOPATH
 export GOPATH=$GOPATH:`pwd`
 
 # intall dependencies

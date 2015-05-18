@@ -48,9 +48,12 @@ func main() {
         log.Fatal(err)
     }
 
-    gitUserName, gitPassword := GetGitAuthData()
-    url := fmt.Sprintf("https://%s:%s@api.github.com/gists", gitUserName, gitPassword)
-    resp, err := http.Post(url, "application/json", bytes.NewBuffer(filesEncoded))
+    gitUserName, gitToken := GetGitAuthData()
+    client := &http.Client{}
+    req, err := http.NewRequest("POST", "https://api.github.com/gists", bytes.NewBuffer(filesEncoded))
+    req.SetBasicAuth(gitUserName, gitToken)
+    req.Header.Set("Content-Type", "application/json")
+    resp, err := client.Do(req)
 
     if err != nil {
         log.Fatal(err)
@@ -64,17 +67,20 @@ func main() {
     if err := json.Unmarshal(content, &dat); err != nil {
         panic(err)
     }
+    if resp.StatusCode >= 300 {
+        log.Fatal(resp.Status)
+    }
     allDone := fmt.Sprintf("All done! Find your uploaded files @ https://gist.github.com/%s/", gitUserName)
     fmt.Println(allDone)
 }
 
 func GetGitAuthData() (string, string) {
-    userName := GetGitParam("user.name")
-    password := GetGitParam("user.password")
-    if len(password) == 0 {
-        password = GetGitPasswordForUser(userName)
+    userName := GetGitParam("user.username")
+    token := GetGitParam("user.token")
+    if len(token) == 0 {
+        token = GetGitPasswordForUser(userName)
     }
-    return userName, password
+    return userName, token
 }
 
 func GetGitParam(paramName string) (string) {

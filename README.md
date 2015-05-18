@@ -1,12 +1,12 @@
 # gisty
 
-Gisty is a command line tool to upload your files as gists onto your github account.
+Gisty is a command line tool to upload your files as gists onto your GitHub account.
 
 ## Installation
 
-This software requires `go` to be installed to your machine. You can get `go` [here](http://golang.org/dl/).
+This software requires `Go` to be installed to your machine. Follow `Go`'s [installation instructions](https://golang.org/doc/install) if needed.
 
-After installig `go`, run these commands in your shell.
+After installig `Go`, run these commands in your shell.
 
 ```Shell
 git clone git@github.com:akoskaaa/gisty.git
@@ -15,7 +15,8 @@ cd gisty
 ```
 
 ## Usage
-Gisty gets your github information from your global git config. The experience is the best when you have your username and password there as well. If any of those are missing, gisty will prompt you for the required information.
+
+Gisty gets your GitHub information from your global Git config. The experience is best when you also have your username and password configured. If any of those are missing, gisty will prompt you for the required information.
 
 ```Shell
 gisty filename.txt

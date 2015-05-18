@@ -11,7 +11,7 @@ After installig `go`, run these commands in your shell.
 ```Shell
 git clone git@github.com:akoskaaa/gisty.git
 cd gisty
-./scripts/setup.sh
+. ./scripts/setup.sh
 ```
 
 ## Usage

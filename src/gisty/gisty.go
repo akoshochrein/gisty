@@ -9,8 +9,8 @@ import (
     "io/ioutil"
     "log"
     "net/http"
+    "os"
     "os/exec"
-    "path"
     "strings"
 )
 
@@ -32,9 +32,9 @@ func main() {
     fileNames := GetFileNamesFromParams()
     for i := range fileNames {
         data := ReadFileData(fileNames[i])
-        truncFileName := path.Base(fileNames[i])
-        files[truncFileName] = FileData{
-            FileName: truncFileName,
+        safeFileName := strings.Replace(fileNames[i], fmt.Sprintf("%c", os.PathSeparator), "_", -1)
+        files[safeFileName] = FileData{
+            FileName: safeFileName,
             FileContent: data}
     }
 

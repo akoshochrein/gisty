@@ -18,10 +18,11 @@ echo "Installing gisty"
 go install gisty
 echo "Installed gisty"
 
-
+export PATH=$PATH:`pwd`/bin
 if [ -f ~/.zshrc ]; then
     echo "export PATH=\$PATH:`pwd`/bin" >> ~/.zshrc     
-else
+fi
+if [ -f ~/.bashrc ]; then
     echo "export PATH=\$PATH:`pwd`/bin" >> ~/.bashrc 
 fi
 

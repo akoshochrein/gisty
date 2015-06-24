@@ -75,7 +75,7 @@ func main() {
 }
 
 func GetGitAuthData() (string, string) {
-    userName := GetGitParam("user.username")
+    userName := GetGitParam("user.name")
     token := GetGitParam("user.token")
     if len(token) == 0 {
         token = GetGitPasswordForUser(userName)

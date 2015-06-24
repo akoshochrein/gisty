@@ -18,7 +18,7 @@ Gisty gets your github information from your global git config. The experience i
 
 ```
 [user]
-        username = <your github username>
+        name = <your github username>
         token = <hexadecimal characters of an access token>
 ```
 
